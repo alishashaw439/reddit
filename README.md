@@ -1,5 +1,6 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Authentication using Reddit API : Auth flow with Deep Linking build in React Native and Configured for iOS
 
+The application features a login screen where users are redirected to the Reddit website to authenticate. Once logged in and permissions are granted to access their content, users are redirected back to the application's home screen using deep linking. The token persists in AsyncStorage in encrypted form. The logout functionality is handled using the context API. Additionally, even if the app is removed from the background or remains in the foreground, it will open on the home screen after the initial successful authentication.
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
@@ -9,17 +10,20 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # using npm
 ### For iOS
+```bash
 npm i
 npx pod-install
 npm start
 press i
+```
 
 If everything is set up _correctly_, you should see your new app running in your _iOS Simulator_ shortly provided you have set up your simulator correctly.
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+# Architecture of project and brief introduction
+I have created an app in [Reddit create app](https://www.reddit.com/prefs/apps).
+The index.js opens up the AuthWall which consists of the AuthProvider(context API for user data). It has AppWrapper as it's children. There is a NavigationStack which has two stacks: AppStack(for logged in user) and AuthStack(for unauthenticated user). Based on the token it renders either of the Stack. I have configured the AppDelegate.m and added url type in the ios workspace for deep linking. 
+Getting the url and updating the state is done in the AppWrapper function. I have added the path in the linking.ts file and passed it to the parameter linking in the NavigationContainer.
+I have recieving the access token from the redirected url sent by the reddit.
 
 # Troubleshooting
 
