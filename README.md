@@ -23,7 +23,7 @@ If everything is set up _correctly_, you should see your new app running in your
 I have created an app in [Reddit create app](https://www.reddit.com/prefs/apps).
 The index.js opens up the AuthWall which consists of the AuthProvider(context API for user data). It has AppWrapper as it's children. There is a NavigationStack which has two stacks: AppStack(for logged in user) and AuthStack(for unauthenticated user). Based on the token it renders either of the Stack. I have configured the AppDelegate.m and added url type in the ios workspace for deep linking. 
 Getting the url and updating the state is done in the AppWrapper function. I have added the path in the linking.ts file and passed it to the parameter linking in the NavigationContainer.
-I have recieving the access token from the redirected url sent by the reddit.
+The access token is recieved from the redirected url sent by the reddit.
 
 # Troubleshooting
 
